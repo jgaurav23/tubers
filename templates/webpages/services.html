@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<main class="contact-us">
+    <div class="banner">
+        <img src="{% static './assets/images/bg-banner.png' %}" alt="" class="img-fluid w-100">
+        <h1 class="text-center">
+            Event Details
+        </h1>
+      </div>
+    <section class="container mt-5">
+    {% comment %} <h1 class="text-center">Event Details</h1> {% endcomment %}
+
+
+    <h2 style="font-family: 'Changa One', sans-serif;">Event Information</h2>
+    <ul class="custom-list" style="font-family: 'Arial', Arial, sans-serif;">
+        <li><strong>First Name:&nbsp;&nbsp;&nbsp;&nbsp;</strong> {{ event_detail.first_name }}</li>
+        <li><strong>Last Name:&nbsp;&nbsp;&nbsp;&nbsp;</strong> {{ event_detail.last_name }}</li>
+        <li><strong>YouTuber Name:&nbsp;&nbsp;&nbsp;&nbsp;</strong> {{ event_detail.tuber_name }}</li>
+        <li><strong>City:&nbsp;&nbsp;&nbsp;&nbsp;</strong> {{ event_detail.city }}</li>
+        <li><strong>State:&nbsp;&nbsp;&nbsp;&nbsp;</strong> {{ event_detail.state }}</li>
+        <li><strong>Email:&nbsp;&nbsp;&nbsp;&nbsp;</strong> {{ event_detail.email }}</li>
+        <li><strong>Phone:&nbsp;&nbsp;&nbsp;&nbsp;</strong> {{ event_detail.phone }}</li>
+        <li>
+            <strong>Message:&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+            <div class="container">{{ event_detail.message }}</div>
+        </li>
+        <li><strong>Event Date & Time:&nbsp;&nbsp;&nbsp;&nbsp;</strong> {{ event_detail.event_date_time }}</li>
+        <li><strong>Approved Amount:&nbsp;&nbsp;&nbsp;&nbsp;</strong> {{ event_detail.approved_amount }}</li>
+        <li><strong>Status:&nbsp;&nbsp;&nbsp;&nbsp;</strong> {{ event_detail.event_status }}</li>
+    </ul>
+</section>
+</main>
+
+{% endblock %}

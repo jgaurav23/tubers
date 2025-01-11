@@ -1,0 +1,38 @@
+from .base import *
+
+import environ
+
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+SECRET_KEY = env('TUBERS_DJANGO_SECRET_KEY')
+
+DEBUG = env('TUBERS_DJANGO_DEBUG')
+
+ALLOWED_HOSTS = env.list('TUBERS_DJANGO_ALLOWED_HOSTS')
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('TUBERS_DB_NAME'),
+        'USER' : env('TUBERS_DB_USER'),
+        'PASSWORD' : env('TUBERS_DB_PASSWORD'),
+        'HOST' : env('TUBERS_DB_HOST'),
+        'PORT' : env('TUBERS_DB_PORT'),
+
+    }
+}
+
+SOCIAL_AUTH_FACEBOOK_KEY = env('TUBERS_SOCIAL_AUTH_FACEBOOK_KEY')  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = env('TUBERS_SOCIAL_AUTH_FACEBOOK_SECRET')  # App Secret
+
+SOCIAL_AUTH_GITHUB_KEY = env('TUBERS_SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = env('TUBERS_SOCIAL_AUTH_GITHUB_SECRET')
+
+SESSION_ENGINE = env('TUBERS_SESSION_ENGINE')
+SESSION_COOKIE_SECURE = env('TUBERS_SESSION_COOKIE_SECURE')
+SESSION_COOKIE_HTTPONLY = env('TUBERS_SESSION_COOKIE_HTTPONLY')

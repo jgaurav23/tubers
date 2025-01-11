@@ -1,0 +1,62 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<main class="contact-us">
+    <div class="banner">
+      <img src="{% static './assets/images/bg-banner.png' %}" alt="" class="img-fluid w-100">
+      <h1 class="text-center">
+        Dashboard
+      </h1>
+    </div>
+    &nbsp 
+    <div class="row">
+      <div class="col-md-4 offset-md-4">
+        {% include 'messages.html' %}
+      </div>
+    </div>
+    <section class="container mt-5">
+      <h2 class="text-center">Welcome to Dashboard</h2>
+      <h4 class="text-center text-white-50">
+        hi, {{user.username}} Hope you are having a good day
+      </h4>
+
+      {% if events %}
+        <div class="table-responsive- mt-3">
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">YouTubers Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Status</th>
+                <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for event in events %}
+              <tr>            
+                <th scope="row">{{event.tuber_name}}</th>
+                <td>{{event.city}}</td>
+                <td>{{event.event_status}}</td>
+                <td>
+                  <a href="{% url 'event_detail' event.id %}"><div class="btn btn-accent">Go to Page </div></a> 
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+      {% else %}
+        &nbsp;
+        <h3 class="text-center text-warning" style="font-family: 'Changa One', Arial, sans-serif;">
+          No Data Found
+        </h3>
+        
+      {% endif %}
+
+    </section>
+  </main>
+    
+
+{% endblock %}

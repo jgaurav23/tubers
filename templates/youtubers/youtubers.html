@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<main class="tubers-page">
+    <div class="banner">
+      <img src="{% static './assets/images/bg-banner.png' %}" alt="" class="img-fluid w-100">
+      <h1 class="text-center" >
+       <i> Tubers </i>
+      </h1>
+    </div>
+
+
+    <section class="container mt-5 mb-5">
+      <div class="row">
+        <div class="col-lg-8 mb-3 ">
+          <section class="tubers">
+
+            {% for tuber in tubers %}
+            <!-- person 1 -->
+            <div class="card border-0 text-center">
+              <div class="feature-text">
+                <a href="{% url 'youtubers_detail' tuber.id %}">
+                <img src="{{ tuber.photo.url }}" class="card-img-top" alt="team-member">
+                </a>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{ tuber.name }}</h5>
+                <p class="card-text">{{ tuber.category }}</p>
+                <div class="person-description mt-2">
+                  <button class="btn btn-accent"> City: {{tuber.city}} </button>
+                  <button class="btn btn-accent"> Age: {{tuber.age}} </button>
+                  <button class="btn btn-accent"> Height: {{tuber.height}} </button>
+                </div>
+                <div class="person-description mt-2">
+                  <button class="btn btn-accent"> Crew: {{tuber.crew}} </button>
+                  <button class="btn btn-accent"> Camera: {{tuber.camera_type}} </button>
+                  <button class="btn btn-accent"> Subs: {{tuber.subs_count}} </button>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </section>
+        </div>
+
+        <!-- search field -->
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <p class="text-left font-weight-bolder text-black-50">
+              Search Tubers
+            </p>
+            <form method="GET" action="{% url 'search' %}">
+              <div class="form-group">
+                <select name="city" id="inputState" class="form-control">
+                  <option selected disabled hidden>City</option>
+                  {% for city1 in city_search %}
+                  <option value="{{city1}}">{{city1}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <select name="camera_type" id="inputState" class="form-control">
+                  <option selected disabled hidden>Camera Type</option>
+                  {% for camera1 in camera_type_search %}
+                  <option value="{{camera1}}" >{{camera1}}</option>
+                  {% endfor %} 
+                </select>
+              </div>
+              <div class="form-group">
+                <select name="category" class="form-control">
+                  <option selected disabled hidden>Category</option>
+                  {% for category1 in category_search %}
+                  <option value="{{category1}}" >{{category1}}</option>
+                  {% endfor %} 
+                </select>
+              </div>
+              <div class="text-center">
+                <button class="btn btn-accent btn-block">Search</button>
+              </div>
+            </form>
+          </div>
+            
+        </div>
+      </div>
+
+      </div>
+    </section>
+
+    <!-- pagination -->
+    <div class="container section pagination-section mt-3">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          
+        {% if tubers.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{tubers.previous_page_number}}">Previous</a></li>
+        {% else %}
+        <li class="page-item" ><span class="page-link">Previous</span></li>
+        {% endif %}
+        
+        {% for page_number in tubers.paginator.page_range %}
+          {% if tubers.number == page_number %}
+          <li class="page-item"><span class="page-link" >{{ page_number }}</span></li>
+          {% else %}
+          <li class="page-item"><a class="page-link" href="?page={{page_number}}">{{page_number}}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if tubers.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{tubers.next_page_number}}">Next</a></li>
+        {% else %}
+        <li class="page-item" ><span class="page-link">Next</span></li>
+        {% endif %}
+          
+        </ul>
+      </nav>
+    </div>
+  </main>
+
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<main class="contact-us">
+    <div class="banner">
+      <img src="{% static './assets/images/bg-banner.png'%}" alt="" class="img-fluid w-100">
+      <h1 class="text-center">
+        About Us
+      </h1>
+    </div>
+    <section class="container mt-5 mb-5">
+      <div class="row mt-5">
+        <div class="col-md-4">
+          <img src="{% static './assets/images/party-1.jpg'%}" alt="" class="img-fluid">
+        </div>
+        <div class="col-md-8 animate__animated animate__fadeInRight">
+          <h2 class="text-center">About Us</h2>
+          <p>Connecting YouTubers for Your User-Created Events and Shows</p>
+
+          <p>HireTube is a unique online platform that empowers users to easily hire talented YouTubers for their user-created events or shows. Whether you're hosting a charity event, a product launch, a live performance, or any other type of gathering, HireTube provides a streamlined solution to connect you with popular YouTubers who can add value and entertainment to your occasion.</p>
+          
+          <p>With HireTube, the process of hiring a YouTuber becomes simple and hassle-free. The platform acts as a central hub where users can browse through a wide selection of talented and diverse YouTubers, each with their own unique style, niche, and audience. You'll have access to an extensive database of popular YouTubers from various genres such as gaming, lifestyle, comedy, beauty, travel, education, and many more.</p>
+        </div>
+      </div>
+      <div class="row mt-5">
+
+        <div class="col-md-8  animate__animated animate__fadeInLeft  animate__delay-1s">
+          <h2 class="text-center">Here's how HireTube works</h2>
+          <p>1.Browse and Discover: Users can explore the platform's extensive catalog of YouTubers, filtering by City, Camera Type and location/city. This allows you to find the perfect fit for your event or show.</p>
+            
+          <p>2.Check Availability and Pricing: Each YouTuber's profile on HireTube provides comprehensive information about their availability, pricing. This helps you make an informed decision based on your budget and requirements.</p>
+            
+          <p>3.Direct Communication: Once you've found a YouTuber who aligns with your vision, HireTube facilitates direct communication between you and the YouTuber. You can discuss event details, specific requirements, and negotiate terms to ensure a seamless collaboration.</p> 
+                        
+          <p>4.Profile Management: HireTube also offers a personalized profile for each user, where you can keep track of your past and ongoing collaborations, manage payments, and leave reviews for YouTubers you've worked with. This helps build a trusted community within the platform.</p>
+            
+          <p>HireTube revolutionizes the way users hire YouTubers for their events or shows, making it convenient, efficient, and accessible to anyone seeking to add a touch of YouTube stardom to their gatherings. Whether you're an individual, a company, or an event organizer, HireTube provides a comprehensive solution to connect you with top YouTubers, making your event an unforgettable experience for both you and your audience.</p>
+        </div>
+        <div class="col-md-4">
+          <img src="{% static './assets/images/party-2.jpg'%}" alt="" class="img-fluid">
+        </div>
+      </div>
+    </section>
+
+    <section class="container mt-3">
+      <h3 class="text-center">Our Amazing Team</h3>
+      <p class="pt-2 pb-3 text-center">Meet the team</p>
+      <div class="team slider" data-slick='{"slidesToShow": 3, "slidesToScroll": 1}'>
+
+        <!-- team 1 -->
+        {% for team in team_member %} 
+        <div class="card border-0 text-center  ml-3 mr-3">
+          <img src="{{ team.photo.url }}" class="card-img-top" alt="team-member">
+          <div class="card-body">
+            <h5 class="card-title">{{team.first_name}} {{team.last_name}}</h5>
+            <p class="card-text">{{team.role}}</p>
+            {% comment %} <a href="#" class="btn btn-accent btn-block">Go somewhere</a> {% endcomment %}
+            <div class="text-center mt-2">
+              <a href="{{team.fb_link}}"><button class="btn btn-accent"> <i class="fab fa-facebook-f fa-lg	"></i> </button></a>
+              <a href="{{team.insta_link}}"><button class="btn btn-accent"> <i class="fab fa-linkedin-in fa-lg	"></i> </button></a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+
+      <div class="controls d-flex justify-content-center mt-2 mb-2">
+        <div class="d-flex">
+          <i class="fa fa-angle-left team-left"></i>
+          <i class="fa fa-angle-right team-right"></i>
+        </div>
+      </div>
+    </section>
+  </main>
+
+{% endblock %}
